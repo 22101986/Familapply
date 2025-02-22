@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les tâches
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+$('#example').DataTable({
+language: {
+processing: "Traitement en cours...",
+search: "Rechercher&nbsp;:",
+lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
+info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+infoEmpty: "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+infoFiltered: "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+infoPostFix: "",
+loadingRecords: "Chargement en cours...",
+zeroRecords: "Aucun &eacute;l&eacute;ment &agrave; afficher",
+emptyTable: "Aucune donnée disponible dans le tableau",
+paginate: {
+first: "Premier",
+previous: "Pr&eacute;c&eacute;dent",
+next: "Suivant",
+last: "Dernier"
+},
+aria: {
+sortAscending: ": activer pour trier la colonne par ordre croissant",
+sortDescending: ": activer pour trier la colonne par ordre décroissant"
+}
+}
+});
+});
+	</script>
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success">
+			<h3 class="d-flex justify-content-center">{{message}}</h3>
+		</div>
+	{% endfor %}
+
+	{% for message in app.flashes('danger') %}
+		<div class="alert alert-danger">
+			<h3 class="d-flex justify-content-center">{{message}}</h3>
+		</div>
+	{% endfor %}
+
+
+	<div style="background-color: #CAF0DC; font-family: 'Comfortaa', cursive;">
+		<div class="example-wrapper text-center">
+
+			<table id="example" class="display">
+				<thead>
+					<tr style="font-family: 'Comfortaa', cursive;">
+						<th>Nom</th>
+						<th>Id</th>
+						<th>Date</th>
+						<th>Priorité</th>
+						<th>Categorie</th>
+						<th>Description</th>
+						<th></th>
+					</tr>
+				</thead>
+
+
+				<tbody>
+					{% for task in tasks %}
+
+						<tr style="font-family: 'Comfortaa', cursive;">
+
+							<th class="text-dark">{{ task.getNameTask() }}</th>
+							<td>{{ task.getidTask() }}</td>
+							<td>{{ task.getdueDateTask().format('d-m-Y') }}</td>
+							<td>{{ task.getPriorityTask() }}</td>
+							<td>{{ task.getCategory().getLibelleCategory() }}</td>
+							<td>{{ task.getDescriptionTask() }}</td>
+							<td>
+								<a class="btn btn-danger opacity-75" href="{{ path('tache_delete', {'id': task.getidTask()} )}}">
+									Supprimer
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

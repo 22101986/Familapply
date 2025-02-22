@@ -1,0 +1,21 @@
+controllers:
+    resource: ../src/Controller/
+    type: annotation
+
+kernel:
+    resource: ../src/Kernel.php
+    type: annotation
+
+# config/routes.yaml
+app_logout:
+    path: /logout
+    methods: GET
+
+
+# oauth2:
+#     resource: '@LeagueOAuth2ServerBundle/Resources/config/routes.php'
+#     type: php
+
+# app_logout:
+#     path: /logout
+#     methods: GET

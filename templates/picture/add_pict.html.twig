@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'une photo
+{% endblock %}
+
+{% block body %}
+
+	<center class="marginTitle">
+		<h1 class="title my-5 ">Ajout d'une photo</h1>
+	</center>
+
+	<div class="wrapper fontText border border-secondary border-3 rounded-2 p-3">
+		<div class="d-flex flex-wrap col-12 justify-content-around fontText">
+			
+			<div class="col-5">
+				{{ form_start(form) }}
+				{{ form_row(form.photo) }}
+				{{ form_row(form.name) }}
+				{{ form_row(form.person_id) }}
+			
+			<div class="d-flex justify-content-center col-12">
+				{{ form_row(form.save) }}
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}

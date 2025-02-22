@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Hello TachesController!
+			{% endblock %}
+		</title>
+
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Shizuru&display=swap" rel="stylesheet">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+
+		{% endblock %}
+
+		{% block javascripts %}
+
+		
+
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body style="background-color: #CAF0DC; font-family: 'Comfortaa', cursive;"></body>
+</html></style><nav class="navbar navbar-light" style="background-color:#F2D7D5; border-bottom: solid gray;">
+<span class="navbar-brand mb-0 h1">
+	<h2 class="m-2 p-2 text-secondary" style="font-family: 'Shizuru', cursive;">
+		<strong>Les Tâches du Quotidien...</strong>
+	</h2>
+</span>
+<section>
+	{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+		<a class="btn btn-danger text-light m-3 opacity-75 " href="{{path('app_logout')}}">
+			<strong>Deconnexion</strong>
+		</a>
+		<a class="btn btn-light text-dark opacity-50" style="color: #dc3545; font-weight: bolder;" href="{{ path('taches_calendar' )}}">
+			<strong>Calendrier</strong>
+		</a>
+		<a class="btn btn-light text-dark opacity-50" style="color: #dc3545; font-weight: bolder;" href="{{ path('picture_listing' )}}">
+			<strong>Album photo</strong>
+		</a>
+		<a class="btn btn-success text-light m-3 opacity-75 " style="color: #dc3545; font-weight: bolder;" href="{{ path('tache_add' )}}">Ajouter une tache</a>
+	{% endif %}
+
+</section></nav>{% block body %}{% endblock %}</body></html>

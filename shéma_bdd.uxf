@@ -1,0 +1,47 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>80</x><y>30</y><w>140</w><h>90</h></coordinates><panel_attributes>user
+--
+id: int(11)
+username: varchar(180)
+roles: longtext
+password: varchar(255)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>80</x><y>160</y><w>150</w><h>80</h></coordinates><panel_attributes>doctrine_migration_version
+--
+version: varchar(191)
+executed_at: datetime
+execution_time: int(11)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>350</x><y>80</y><w>160</w><h>130</h></coordinates><panel_attributes>task
+--
+id_task: int(11)                  PK
+name_task: varchar(75)
+description_task: text
+created_date_task: datetime
+due_date_task: datetime
+priority_task: varchar(30)
+category_id: smallint(6)    FK</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>170</y><w>170</w><h>60</h></coordinates><panel_attributes>categorys
+--
+id_category
+libelle_category: varchar(100)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>690</x><y>390</y><w>150</w><h>70</h></coordinates><panel_attributes>person
+--
+id: int(11)
+age: int(11)
+name: varchar(255)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>370</y><w>150</w><h>70</h></coordinates><panel_attributes>picture
+--
+id: int(11)
+name: varchar(255)
+picture: varchar(255)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>430</x><y>370</y><w>150</w><h>60</h></coordinates><panel_attributes>picture_person
+--
+picture_id: int(11)
+person_id: int(11)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>310</x><y>380</y><w>140</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=n
+</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>570</x><y>400</y><w>140</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>10;20;120;20</additional_attributes></element><element><id>Relation</id><coordinates><x>500</x><y>180</y><w>150</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>10;20;130;20</additional_attributes></element></diagram>

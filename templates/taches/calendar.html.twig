@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<style>
+
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+ <div class="position-relative">
+
+	<section id="test" class="d-flex justify-content-center opacity-0">
+		<div id="event" style="z-index:5;"class="p-5 m-5 d-flex justify-content-around flex-column position-absolute bg bg-dark opacity-100 h-50 w-50">
+		  	<h1 class="text-center" style="color:pink;">Audrey Casca je t'aime</h1>
+			<a id="test-button" href="{{ path('taches_calendar')}}" class="bg btn btn-light text-center"><strong class="text-danger">TEST</strong></a>
+		</div>
+	</section>
+	<div class="container">
+		<a  class='btn btn-succes opacity-50 w-10 d-flex justify-content-center' href="{{ path('taches_listing')}}" style="background-color:#F2D7D5;">
+			<button>retour liste de tâches</button>
+		</a>
+	</div>
+	<div class='container m-2'>
+		<div id='calendar'></div>
+	</div>
+	
+</div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js" integrity="sha256-XCdgoNaBjzkUaEJiauEq+85q/xi/2D4NcB3ZHwAapoM=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/locales-all.min.js" integrity="sha256-GcByKJnun2NoPMzoBsuCb4O2MKiqJZLlHTw3PJeqSkI=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+<script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        let calendarEl = document.getElementById('calendar');
+		let event = document.getElementById('event');
+		let localLang = $("#localLang").text();
+	    let localeSelectorEl = document.getElementById('locale-selector');
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+          	headerToolbar: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+			},		
+			buttonText: {
+				today: "aujourd'hui",
+				month: "mois",
+				week: "semaine",
+				day: "jour",
+				list: "liste"
+
+			},	
+            locale: 'fr',
+			startOnMonday:true,
+			buttonIcons: true,
+			weekNumbers: true,
+			navLinks: true,
+			editable: true,
+			dayMaxEvents: true,
+			selectable: true,
+			events: {{ datas|raw }},
+			select:function (info) {
+				
+				console.log(info);
+			}, 
+			eventClick: function (info) {
+				let test = document.getElementById("test");
+				test.classList.remove("opacity-0");
+				
+				console.log(info.event.title);
+			},
+			
+	
+        });
+        calendar.render();
+      });
+
+
+</script>
+
+{% endblock %}

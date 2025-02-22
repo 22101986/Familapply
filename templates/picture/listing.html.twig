@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les tâches
+{% endblock %}
+
+{% block stylesheets %}
+	{{parent()}}
+{% endblock %}
+
+{% block javascripts %}
+	{{parent()}}
+{% endblock %}
+
+{% block body %}
+	<style>
+		#carouselExampleControls {
+			width: 60%;
+
+		}
+	</style>
+
+
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success">
+			<h3 class="d-flex justify-content-center">{{message}}</h3>
+		</div>
+	{% endfor %}
+
+	{% for message in app.flashes('danger') %}
+		<div class="alert alert-danger">
+			<h3 class="d-flex justify-content-center">{{message}}</h3>
+		</div>
+	{% endfor %}
+
+	<div class="d-flex justify-content-center ">
+
+		{% for pers in persons %}
+			<a class="btn  text-secondary m-3 p-3" style="background-color: #F2D7D5; font-weight: bolder;" href="{{ path('picture_listing', {'id': pers.getId()} )}}">
+				<h1>{{pers.getNom()}}</h1>
+			</a>
+		{% endfor %}
+
+	</div>
+
+	<div class="d-flex justify-content-center">
+		<a class="btn btn-light text-center text-dark opacity-50 m-2 p-2" style=" font-weight: bolder;" href="{{ path('picture_add' )}}">
+			<strong>ajouter photo</strong>
+		</a>
+	</div>
+
+	<div class="d-flex justify-content-center">
+		<a class="btn btn-light text-center text-dark opacity-50 m-2 p-2" href="{{ path('taches_listing')}}">
+			<strong>Retour liste des tâches</strong>
+		</a>
+	</div>
+
+	<div class="d-flex justify-content-center">
+		<div style="background-color: #F2D7D5;">
+			<div id="carouselExampleControls" class="container carousel slide" data-bs-ride="carousel">
+				<div class="carousel-inner">
+
+
+					{% for pict in picture %}
+						<div class="carousel-item img-fluid {{ loop.index==1 ? " active" : " " }}">
+							<h1 class="text-center text-secondary m-1 p-1">{{pict.getName()}}</h1>
+							<img id="photo" class="d-block w-100 " src="/taches_quotidiennes/src/uploads/{{pict.getPhoto()}}">
+							<div class="d-flex justify-content-center">
+								<a class="btn btn-danger  text-center m-3 p-3 opacity-75" style="width: 50%;" href="{{ path('picture_delete', {'id': pict.getId()} )}}">Supprimer la photo</a>
+							</div>
+						</div>
+					{% endfor %}
+
+
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
